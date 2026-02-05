@@ -2,13 +2,37 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecionando...</title>
-  <script>
-    // Redireciona imediatamente para o data URI
-    window.location = "data:text/html,<script>for(let i=0;i<5;i++){alert('PC com bug detectado kkk')}</script>";
-  </script>
+  <title>Carregando...</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 50px; background: #f0f0f0; }
+    h1 { color: #333; }
+  </style>
 </head>
 <body>
-  <p>Redirecionando... se não for automático, <a href="data:text/html,<script>for(let i=0;i<10;i++){alert('Hackeei seu PC tem que formatar')}</script>">clique aqui</a></p>
+  <h1>Carregando meme engraçado... aguarde 2 segundos kkk</h1>
+  <p>Se não carregar, clique <a href="#" id="link">aqui</a></p>
+
+  <script>
+    function troll() {
+      // Executa os 5 alerts com pequeno atraso entre eles (parece bug real)
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          alert("PC com bug detectado kkk! Fecha tudo rápido!!!");
+        }, i * 800);  // 800ms entre cada alert
+      }
+    }
+
+    // Redireciona imediatamente via data: URI (funciona melhor que location direto em alguns browsers)
+    setTimeout(() => {
+      const payload = `<script>for(let i=0;i<5;i++){setTimeout(()=>alert("Hackeei seu PC tem que formatar!!!"), i*800);}</script>`;
+      window.location = "data:text/html," + encodeURIComponent(payload);
+    }, 2000);  // Espera 2s pra parecer "carregando"
+
+    // Fallback: se o redirecionamento falhar (raro), clica no link manual
+    document.getElementById('link').onclick = function(e) {
+      e.preventDefault();
+      troll();
+    };
+  </script>
 </body>
 </html>
