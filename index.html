@@ -2,37 +2,89 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Carregando...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foto Secreta Vazada kkk</title>
   <style>
-    body { font-family: Arial; text-align: center; padding: 50px; background: #f0f0f0; }
-    h1 { color: #333; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+    img {
+      max-width: 80%;
+      max-height: 50vh;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      margin-bottom: 30px;
+      border: 5px solid white;
+    }
+    button {
+      padding: 20px 50px;
+      font-size: 1.8em;
+      font-weight: bold;
+      color: white;
+      background: #e74c3c;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #c0392b;
+      transform: scale(1.1);
+    }
+    p {
+      font-size: 1.3em;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Carregando meme engraçado... aguarde 2 segundos kkk</h1>
-  <p>Se não carregar, clique <a href="#" id="link">aqui</a></p>
+  <h1>Olha a foto vazada da Giovana kkkk 🔥</h1>
+  
+  <img src="img.png" alt="Foto secreta (clica no botão pra ver de verdade)">
+  
+  <button id="botao-troll">CLICA AQUI PRA VER A FOTO AGORA!</button>
+  
+  <p>(é só clicar, não morde... ou morde? 😈)</p>
 
   <script>
-    function troll() {
-      // Executa os 5 alerts com pequeno atraso entre eles (parece bug real)
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-          alert("PC com bug detectado kkk! Fecha tudo rápido!!!");
-        }, i * 800);  // 800ms entre cada alert
-      }
-    }
+    document.getElementById('botao-troll').addEventListener('click', function() {
+      // Mostra os 5 alerts com atraso pra parecer bug/travamento
+      const mensagens = [
+        "PC com bug detectado kkk!",
+        "Seu PC tá travando feio!!!",
+        "Fecha tudo rápido mano!!!",
+        "Formata agora ou vai perder tudo kkkkk",
+        "Tá bugado de vez! HAHAHAHA 😈"
+      ];
 
-    // Redireciona imediatamente via data: URI (funciona melhor que location direto em alguns browsers)
-    setTimeout(() => {
-      const payload = `<script>for(let i=0;i<5;i++){setTimeout(()=>alert("Hackeei seu PC tem que formatar!!!"), i*800);}</script>`;
-      window.location = "data:text/html," + encodeURIComponent(payload);
-    }, 2000);  // Espera 2s pra parecer "carregando"
-
-    // Fallback: se o redirecionamento falhar (raro), clica no link manual
-    document.getElementById('link').onclick = function(e) {
-      e.preventDefault();
-      troll();
-    };
+      let index = 0;
+      const intervalo = setInterval(() => {
+        if (index < mensagens.length) {
+          alert(mensagens[index]);
+          index++;
+        } else {
+          clearInterval(intervalo);
+          // Opcional: depois dos alerts, mostra uma mensagem final na página
+          document.body.innerHTML = '<h1 style="color: yellow; font-size: 4em;">ZOEIRA PURA! KKKKKK FOI TROLLADO 😂</h1><p>Agora manda print da sua cara pro grupo</p>';
+        }
+      }, 700);  // 700ms entre cada alert (ajuste se quiser mais rápido/lento)
+    });
   </script>
 </body>
 </html>
